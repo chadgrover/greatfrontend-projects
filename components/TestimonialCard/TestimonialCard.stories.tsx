@@ -15,5 +15,12 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Primary: Story = {
-  args: {},
+  args: {
+    thumbnail: "/images/profile-thumbnail.png",
+    firstName: "sarah",
+    lastName: "dole",
+    handle: "sarahdole",
+    message:
+      "I've been searching for high-quality abstract images for my design projects, and I'm thrilled to have found this platform. The variety and depth of creativity are astounding!",
+  },
 };
