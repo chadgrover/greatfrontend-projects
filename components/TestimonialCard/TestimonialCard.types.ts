@@ -1,9 +1,10 @@
 interface ITestimonialCardProps {
-  thumbnail: string;
-  firstName: string;
-  lastName: string;
-  handle: string;
+  thumbnail?: string;
+  firstName?: string;
+  lastName?: string;
+  handle?: string;
   message: string;
 }
 
 export default ITestimonialCardProps;
+
