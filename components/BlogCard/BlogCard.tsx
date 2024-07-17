@@ -1,5 +1,9 @@
+"use server";
+
 import { memo } from "react";
 import Image from "next/image";
+import ArrowRight from "@/assets/icons/ui/ArrowRight";
+import { formatButtonVariantClassName } from "@/lib/utils/formatting";
 import { ITagProps, IBlogCardProps, IButtonProps } from "./BlogCard.types";
 
 const Tag: React.FC<ITagProps> = ({ tag }) => (
@@ -14,31 +18,30 @@ const Button: React.FC<IButtonProps> = ({
   children,
   variant = "primary",
   ...rest
-}) => (
-  <button
-    {...rest}
-    type={type}
-    className={`flex flex-row items-center text-base gap-2 ${addClassName}`}
-  >
-    <span className="text-indigo-700">{children}</span>
-    <svg
-      aria-hidden="true"
-      focusable="false"
-      xmlns="http://www.w3.org/2000/svg"
-      fill="none"
-      viewBox="0 0 24 24"
-      stroke-width="2"
-      stroke="currentColor"
-      className="w-4 h-4 stroke-indigo-700"
+}) => {
+  const BASE_BUTTON_CLASSES =
+    "w-fit flex flex-row items-center text-base gap-2 p-px";
+
+  return (
+    <button
+      {...rest}
+      type={type}
+      disabled={variant === "disabled"}
+      className={formatButtonVariantClassName(
+        variant,
+        BASE_BUTTON_CLASSES,
+        addClassName
+      )}
     >
-      <path
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"
+      <span>{children}</span>
+      <ArrowRight
+        strokeWidth="3"
+        stroke="currentColor"
+        addClassName="stroke-indigo-700"
       />
-    </svg>
-  </button>
-);
+    </button>
+  );
+};
 
 const BlogCard: React.FC<IBlogCardProps> = memo(
   ({ imageUrl, tags, title, description }) => (
@@ -47,7 +50,9 @@ const BlogCard: React.FC<IBlogCardProps> = memo(
         <Image
           src={imageUrl}
           alt="A picture for the blog post"
+          priority={true}
           fill
+          sizes="340px"
           className="w-full object-cover"
         />
       </figure>

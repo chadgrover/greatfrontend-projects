@@ -4,6 +4,8 @@ const config: Config = {
   content: [
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
+    "./assets/**/*.{js,ts,jsx,tsx,mdx}",
+    "./lib/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
     extend: {
@@ -14,6 +16,10 @@ const config: Config = {
       },
       fontFamily: {
         "noto-sans": ["Noto Sans", "sans-serif"],
+      },
+      colors: {
+        "custom-indigo-hover": "#3730A3",
+        "custom-slate-disabled": "#A3A3A3",
       }
     },
   },
