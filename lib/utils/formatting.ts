@@ -14,7 +14,7 @@ const formatFullName = (firstName: string, lastName: string): string => {
 };
 
 /**
- * 
+ *
  * @param variant The variant of the button
  * @param baseClasses The base classes for the button
  * @param addClassName Additional classes to add to the button (optional)
@@ -36,5 +36,27 @@ const formatButtonVariantClassName = (
   }
 };
 
-export { formatFullName, formatButtonVariantClassName };
+/**
+ *
+ * @param jobTitle The job title of the user
+ * @param company The company the user works for
+ * @returns A formatted string with the job title and company
+ */
+const formatJobTitleAndCompany = (
+  jobTitle: string,
+  company: string
+): string => {
+  const jobTitleAsArray = jobTitle.split(" ");
+  jobTitleAsArray.forEach((word, index) => {
+    jobTitleAsArray[index] = word.charAt(0).toUpperCase() + word.slice(1);
+  });
 
+  const companyAsArray = company.split(" ");
+  companyAsArray.forEach((word, index) => {
+    companyAsArray[index] = word.charAt(0).toUpperCase() + word.slice(1);
+  });
+
+  return `${jobTitleAsArray.join(" ")} @ ${companyAsArray.join(" ")}`;
+};
+
+export { formatFullName, formatButtonVariantClassName, formatJobTitleAndCompany };
